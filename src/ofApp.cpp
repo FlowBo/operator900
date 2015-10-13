@@ -1,18 +1,4 @@
 #include "ofApp.h"
-void drawMarker(float size, const ofColor & color){
-    ofDrawAxis(size);
-    ofPushMatrix();
-    // move up from the center by size*.5
-    // to draw a box centered at that point
-    ofTranslate(0,size*0.5,0);
-    ofFill();
-    ofSetColor(color,50);
-    ofBox(size);
-    ofNoFill();
-    ofSetColor(color);
-    ofBox(size);
-    ofPopMatrix();
-}
 //--------------------------------------------------------------
 void ofApp::setup(){
     string boardName = "boardConfiguration.yml";
@@ -29,17 +15,9 @@ void ofApp::setup(){
     video.setDesiredFrameRate(60);
     video.setVerbose(true);
     video.initGrabber( camWidth ,camHeight);
-    
-    videoController.setup(&video);
-    cam = &video;
     ofSetVerticalSync(true);
-    aruco.setup("intrinsics.int", cam->getWidth(), cam->getHeight(), boardName);
-    aruco.getBoardImage(board.getPixelsRef());
-    board.update();
-    
     videoController.setup(&video);
-    
-    
+
     //Color tracking
     cArray.setResolution(resolution);
     cArray.setup(50, 50, size, size, camWidth,camHeight);
@@ -53,29 +31,13 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    //Update video
-    bool bNewFrame = false;
-    video.update();
-    bNewFrame = video.isFrameNew();
-    if (bNewFrame){
-        aruco.detectBoards(cam->getPixelsRef());
-    }
-    if(aruco.getNumMarkers() == 4){
-        std::vector<aruco::Marker> m = aruco.getMarkers();
-        convertedMarker.clear();
-        for (std::vector<aruco::Marker>::iterator it = m.begin(); it != m.end();++it){
-            convertedMarker.push_back(ofVec2f((*it).getCenter().x,(*it).getCenter().y ));
-        }
-        updateMarker(convertedMarker);
-        cArray.updateMarker(topLeft,topRight,bottomLeft,bottomRight);
-    }
-    int totalPixels = camWidth*camHeight*3;
-    unsigned char * pixels = video.getPixels();
+    videoController.update();
+//    unsigned char * pixels = video.getPixels();
     //update Color tracking
-    cArray.videoUpdate(pixels);
-    cArray.calculateColorArray();
+//    cArray.videoUpdate(pixels);
+//    cArray.calculateColorArray();
     
-    serialUpdate();
+//    serialUpdate();
     
 }
 
@@ -83,58 +45,12 @@ void ofApp::update(){
 void ofApp::draw(){
     ofBackground(0, 0, 0);
     ofSetColor(255, 255, 255);
-//    video.draw(0, 0);
     videoController.draw();
     ofFill();
     cArray.draw();
-    for(int i=0;i<aruco.getNumMarkers();i++){
-        aruco.begin(i);
-        drawMarker(0.15,ofColor::white);
-        aruco.end();
-    }
-    
-    ofDrawBitmapString(ofToString(ofGetFrameRate())+"fps", 10, 700);
-    ofDrawBitmapString("topLeft" + ofToString(topLeft) , topLeft.x , topLeft.y);
-    ofDrawBitmapString("topRight"+ ofToString(topRight), topRight.x , topRight.y);
-    ofDrawBitmapString("bottomLeft"+ ofToString(bottomLeft), bottomLeft.x , bottomLeft.y);
-    ofDrawBitmapString("bottomRight"+ ofToString(bottomRight), bottomRight.x , bottomRight.y);
+    ofDrawBitmapString(ofToString(ofGetFrameRate())+"fps", 10, 710);
     gui.draw();
     
-}
-
-
-void ofApp::updateMarker(std::vector<ofVec2f> m){
-    float dist = 99999999.0f;
-    std::vector<ofVec2f>::iterator toDelete;
-    for (std::vector<ofVec2f>::iterator it = m.begin(); it != m.end();++it){
-        float pointDist = (*it).distance(ofVec2f(0,0));
-        if(pointDist < dist )
-        {
-            dist = pointDist;
-            toDelete = it;
-            topLeft = (*it);
-        }
-    }
-    m.erase(toDelete);
-    dist = 0;
-    for (std::vector<ofVec2f>::iterator it = m.begin(); it != m.end();++it){
-        
-        float pointDist = (*it).distance(ofVec2f(0,0));
-        if(pointDist > dist )
-        {
-            dist = pointDist;
-            toDelete = it;
-            bottomRight = (*it);
-        }
-    }
-    m.erase(toDelete);
-    if(m.at(0).x  < m.at(1).x ){
-        bottomLeft = m.at(0);
-        topRight = m.at(1);
-    }else{
-        bottomLeft = m.at(1);
-        topRight = m.at(0);
-    }
 }
 
 void ofApp::serialSetup(){
