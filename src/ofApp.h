@@ -8,7 +8,7 @@
 #include "ofxAruco.h"
 #include "ofxCv.h"
 #include "ofBitmapFont.h"
-
+#include "videoProcessor.hpp"
 
 class ofApp : public ofBaseApp{
     
@@ -36,6 +36,8 @@ public:
     int camWidth;
     int camHeight;
     ofVideoGrabber video;
+    videoProcessor videoController;
+    
     
     //Color tacking
     ColorArray cArray;

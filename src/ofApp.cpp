@@ -29,11 +29,15 @@ void ofApp::setup(){
     video.setDesiredFrameRate(60);
     video.setVerbose(true);
     video.initGrabber( camWidth ,camHeight);
+    
+    videoController.setup(&video);
     cam = &video;
     ofSetVerticalSync(true);
     aruco.setup("intrinsics.int", cam->getWidth(), cam->getHeight(), boardName);
     aruco.getBoardImage(board.getPixelsRef());
     board.update();
+    
+    videoController.setup(&video);
     
     
     //Color tracking
@@ -79,7 +83,8 @@ void ofApp::update(){
 void ofApp::draw(){
     ofBackground(0, 0, 0);
     ofSetColor(255, 255, 255);
-    video.draw(0, 0);
+//    video.draw(0, 0);
+    videoController.draw();
     ofFill();
     cArray.draw();
     for(int i=0;i<aruco.getNumMarkers();i++){

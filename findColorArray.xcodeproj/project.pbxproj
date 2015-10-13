@@ -44,6 +44,7 @@
 		070695341BC083D200E55B0C /* snappy-stubs-internal.cc in Sources */ = {isa = PBXBuildFile; fileRef = 070695171BC083D200E55B0C /* snappy-stubs-internal.cc */; settings = {ASSET_TAGS = (); }; };
 		070695351BC083D200E55B0C /* snappy.cc in Sources */ = {isa = PBXBuildFile; fileRef = 0706951A1BC083D200E55B0C /* snappy.cc */; settings = {ASSET_TAGS = (); }; };
 		07468C7C1BC0EC460031FFC5 /* ofxConvexHull.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07468C7A1BC0EC460031FFC5 /* ofxConvexHull.cpp */; settings = {ASSET_TAGS = (); }; };
+		0798F7A71BCDBAA000067979 /* videoProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0798F7A51BCDBAA000067979 /* videoProcessor.cpp */; settings = {ASSET_TAGS = (); }; };
 		079A43241BBF29DA00389EC2 /* ColorArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 079A43221BBF29DA00389EC2 /* ColorArray.cpp */; settings = {ASSET_TAGS = (); }; };
 		07BAE5281BC2376F002B8AD3 /* ofxAruco.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BAE5061BC2376F002B8AD3 /* ofxAruco.cpp */; settings = {ASSET_TAGS = (); }; };
 		07BAE5291BC2376F002B8AD3 /* arucofidmarkers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BAE5171BC2376F002B8AD3 /* arucofidmarkers.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -231,6 +232,8 @@
 		0706951B1BC083D200E55B0C /* snappy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = snappy.h; sourceTree = "<group>"; };
 		07468C7A1BC0EC460031FFC5 /* ofxConvexHull.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxConvexHull.cpp; sourceTree = "<group>"; };
 		07468C7B1BC0EC460031FFC5 /* ofxConvexHull.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxConvexHull.h; sourceTree = "<group>"; };
+		0798F7A51BCDBAA000067979 /* videoProcessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = videoProcessor.cpp; sourceTree = "<group>"; };
+		0798F7A61BCDBAA000067979 /* videoProcessor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = videoProcessor.hpp; sourceTree = "<group>"; };
 		079A43221BBF29DA00389EC2 /* ColorArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorArray.cpp; sourceTree = "<group>"; };
 		079A43231BBF29DA00389EC2 /* ColorArray.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ColorArray.hpp; sourceTree = "<group>"; };
 		07BAE5061BC2376F002B8AD3 /* ofxAruco.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAruco.cpp; sourceTree = "<group>"; };
@@ -1361,6 +1364,8 @@
 				07FD16BF1BCC7ECC003B798C /* cncController.cpp */,
 				07FD16C01BCC7ECC003B798C /* cncController.hpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
+				0798F7A51BCDBAA000067979 /* videoProcessor.cpp */,
+				0798F7A61BCDBAA000067979 /* videoProcessor.hpp */,
 				079A43221BBF29DA00389EC2 /* ColorArray.cpp */,
 				079A43231BBF29DA00389EC2 /* ColorArray.hpp */,
 			);
@@ -1500,6 +1505,7 @@
 				070694C91BC083BD00E55B0C /* serial.cc in Sources */,
 				837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */,
 				07BAE55A1BC23785002B8AD3 /* ETF.cpp in Sources */,
+				0798F7A71BCDBAA000067979 /* videoProcessor.cpp in Sources */,
 				0706952C1BC083D200E55B0C /* LinkFilter.cpp in Sources */,
 				079A43241BBF29DA00389EC2 /* ColorArray.cpp in Sources */,
 				07BAE5611BC23785002B8AD3 /* Kalman.cpp in Sources */,
